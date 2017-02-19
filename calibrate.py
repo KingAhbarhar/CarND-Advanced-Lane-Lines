@@ -326,7 +326,11 @@ def process_testimages(mtx, dist):
 
         # perform warping/perspective transform to birds eye view
         warped_image, perspective_m, perspective_m_inv = perform_warp(thresholded_image)
-        visualize_images(img, warped_image)
+
+        # write_name = "./output_images/warped/warped{}.jpg".format(index + 1)
+        # cv2.imwrite(write_name, warped_image)
+
+        # visualize_images(img, warped_image)
 
 
 # --------------------------------------------------------
