@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 import glob
 import pickle
+from lane import *
 
 # Choose a Sobel kernel size
 ksize = 3  # Choose a larger odd number to smooth gradient measurements
@@ -316,7 +317,7 @@ def process_testimages(mtx, dist):
         print("processing", index, f_name)
 
         # read in image
-        img = mpimg.imread(f_name)
+        img = cv2.imread(f_name)
 
         # Undistort the image
         undist = cv2.undistort(img, mtx, dist, None, mtx)
@@ -325,12 +326,16 @@ def process_testimages(mtx, dist):
         thresholded_image = pipeline(undist) * 255  # multiplication converts 1s to 255 i.e. white
 
         # perform warping/perspective transform to birds eye view
-        warped_image, perspective_m, perspective_m_inv = perform_warp(thresholded_image)
+        warped_image, M, Minv = perform_warp(thresholded_image)
 
-        # write_name = "./output_images/warped/warped{}.jpg".format(index + 1)
-        # cv2.imwrite(write_name, warped_image)
+        ploty, left_fitx, right_fitx = find_lane_lines_histogram_style(warped_image, should_plot=False)
+        result = draw_lines_on_road(warped_image, undist, ploty, left_fitx, right_fitx, Minv)
+        # exit()
 
-        # visualize_images(img, warped_image)
+        write_name = "./output_images/roadline/roadline{}.jpg".format(index + 1)
+        cv2.imwrite(write_name, result)
+
+        # visualize_images(result, warped_image)
 
 
 # --------------------------------------------------------

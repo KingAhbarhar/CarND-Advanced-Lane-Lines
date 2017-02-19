@@ -2,6 +2,7 @@ import numpy as np
 import cv2
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
+import glob
 
 print("Hello World! test.py")
 
@@ -12,7 +13,7 @@ def view_histogram(img):
     plt.show()
 
 
-def find_lane_lines_histogram_style(binary_warped):
+def find_lane_lines_histogram_style(binary_warped, should_plot=True):
     # Assuming you have created a warped binary image called "binary_warped"
     # Take a histogram of the bottom half of the image
     histogram = np.sum(binary_warped[binary_warped.shape[0] / 2:, :], axis=0)
@@ -92,14 +93,16 @@ def find_lane_lines_histogram_style(binary_warped):
 
     out_img[nonzeroy[left_lane_inds], nonzerox[left_lane_inds]] = [255, 0, 0]
     out_img[nonzeroy[right_lane_inds], nonzerox[right_lane_inds]] = [0, 0, 255]
-    plt.imshow(out_img)
-    plt.plot(left_fitx, ploty, color='yellow')
-    plt.plot(right_fitx, ploty, color='yellow')
-    plt.xlim(0, 1280)
-    plt.ylim(720, 0)
-    plt.show()
 
-    return ploty, left_fit, right_fit
+    if should_plot:
+        plt.imshow(out_img)
+        plt.plot(left_fitx, ploty, color='yellow')
+        plt.plot(right_fitx, ploty, color='yellow')
+        plt.xlim(0, 1280)
+        plt.ylim(720, 0)
+        plt.show()
+
+    return ploty, left_fitx, right_fitx
 
 
 # Skip the sliding windows step once you know where the lines are
@@ -168,8 +171,6 @@ def optimize_next_frame_lane_fine(binary_warped, left_fit, right_fit):
 # A convolution is the summation of the product of two separate signals,
 # in our case the window template and the vertical slice of the pixel image.
 
-# Read in a thresholded image
-warped = mpimg.imread('warped_example.jpg')
 # window settings
 window_width = 50
 window_height = 80  # Break image into 9 vertical layers since image height is 720
@@ -223,7 +224,7 @@ def find_window_centroids(warped, window_width, window_height, margin):
     return window_centroids
 
 
-def find_lane_with_convolution():
+def find_lane_with_convolution(warped):
     window_centroids = find_window_centroids(warped, window_width, window_height, margin)
 
     # If we found any window centers
@@ -257,7 +258,7 @@ def find_lane_with_convolution():
     # Display the final results
     plt.imshow(output)
     plt.title('window fitting results')
-    plt.show()
+    # plt.show()
 
 
 # --------- Calculate radius of curvature start --------------#
@@ -328,7 +329,7 @@ def radius_of_curvature():
     # Example values: 632.1 m    626.2 m
 
 
-def draw_lines_on_road(warped, undist, ploty, left_fitx, right_fitx):
+def draw_lines_on_road(warped, undist, ploty, left_fitx, right_fitx, Minv):
     # function not working at Minv
     # Create an image to draw the lines on
     warp_zero = np.zeros_like(warped).astype(np.uint8)
@@ -350,18 +351,69 @@ def draw_lines_on_road(warped, undist, ploty, left_fitx, right_fitx):
     newwarp = cv2.warpPerspective(color_warp, Minv, (image.shape[1], image.shape[0]))
     # Combine the result with the original image
     result = cv2.addWeighted(undist, 1, newwarp, 0.3, 0)
-    plt.imshow(result)
-    plt.show()
+
+    # plt.imshow(result)
+    # plt.show()
+
+    return result
+
+
+def draw_poly(image, warped, yvals, left_fitx, right_fitx, Minv, curvature):
+    # Create an image to draw the lines on
+    warp_zero = np.zeros_like(warped).astype(np.uint8)
+    color_warp = np.dstack((warp_zero, warp_zero, warp_zero))
+    # Recast the x and y points into usable format for cv2.fillPoly()
+    pts_left = np.array([np.transpose(np.vstack([left_fitx, yvals]))])
+    pts_right = np.array([np.flipud(np.transpose(np.vstack([right_fitx, yvals])))])
+    pts = np.hstack((pts_left, pts_right))
+    # Draw the lane onto the warped blank image
+    cv2.fillPoly(color_warp, np.int_([pts]), (0, 255, 0))
+    # Warp the blank back to original image space using inverse perspective matrix (Minv)
+    newwarp = cv2.warpPerspective(color_warp, Minv, (image.shape[1], image.shape[0]))
+    # Combine the result with the original image
+    result = cv2.addWeighted(image, 1, newwarp, 0.3, 0)
+    # Put text on an image
+    font = cv2.FONT_HERSHEY_SIMPLEX
+    text = "Radius of Curvature: {} m".format(int(curvature))
+    cv2.putText(result, text, (400, 100), font, 1, (255, 255, 255), 2)
+    # Find the position of the car
+    pts = np.argwhere(newwarp[:, :, 1])
+    position = find_position(pts, newwarp)
+    if position < 0:
+        text = "Vehicle is {:.2f} m left of center".format(-position)
+    else:
+        text = "Vehicle is {:.2f} m right of center".format(position)
+    cv2.putText(result, text, (400, 150), font, 1, (255, 255, 255), 2)
+    return result
+
+
+def find_position(pts, warped):
+    # Find the position of the car from the center
+    # It will show if the car is 'x' meters from the left or right
+    position = warped.shape[1] / 2
+    left = np.min(pts[(pts[:, 1] < position) & (pts[:, 0] > 700)][:, 1])
+    right = np.max(pts[(pts[:, 1] > position) & (pts[:, 0] > 700)][:, 1])
+    center = (left + right) / 2
+    # Define conversions in x and y from pixels space to meters
+    xm_per_pix = 3.7 / 700  # meteres per pixel in x dimension
+    return (position - center) * xm_per_pix
 
 
 # image = mpimg.imread('signs_vehicles_xygrad.png')
 # print(image.shape)
 # # view_histogram(image)
+# warped = mpimg.imread('./output_images/warped/warped5.jpg')
 #
-# ploty, left_fit, right_fit = find_lane_lines_histogram_style(warped)
+# # Read in a warped image
+# warped_images = glob.glob("./output_images/warped/warped*.jpg")
+# for i, name in enumerate(warped_images):
+#     warped = mpimg.imread(name)
+#     find_lane_with_convolution(warped)
+#     ploty, left_fit, right_fit = find_lane_lines_histogram_style(warped)
+
+
 # next_frame = np.copy(warped)
 # ploty, left_fit, right_fit = optimize_next_frame_lane_fine(next_frame, left_fit, right_fit)
-find_lane_with_convolution()
 # radius_of_curvature()
 # draw_lines_on_road(warped, image, ploty, left_fit, right_fit)
 
