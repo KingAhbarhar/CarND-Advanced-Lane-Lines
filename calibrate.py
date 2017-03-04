@@ -701,21 +701,13 @@ def process_test_image(img, mtx, dist):
     warped_image_with_window, ploty, left_fitx, right_fitx = find_lane_lines_histogram_style(warped, False)
     # outimg, ploty, left_fitx, right_fitx = optimize_next_frame_lane_fine(warped, left_fitx, right_fitx)
 
-    visualize_images(undist, warped_color, "Undistorted image with src points drawn",
-                     "Warped result with dest points drawn", 15)
-    exit("jjjj")
-
     left_curve, right_curve = radius_of_curvature(ploty, left_fitx, right_fitx)
     print("Real3D radius left: {} m, right: {} m".format(int(left_curve), int(right_curve)))
 
     result = draw_lines_on_road(warped, undist, ploty, left_fitx, right_fitx, Minv, left_curve)
 
-    visualize_images(result, warped_image_with_window)
-    exit("pr2")
-
     return result, ploty, left_fitx, right_fitx
 
-
-mtx, dist = find_corners_and_caliberate_camera()
-image = mpimg.imread('test_images/straight_lines1.jpg')
-process_test_image(image, mtx, dist)
+# mtx, dist = find_corners_and_caliberate_camera()
+# image = mpimg.imread('test_images/straight_lines1.jpg')
+# process_test_image(image, mtx, dist)

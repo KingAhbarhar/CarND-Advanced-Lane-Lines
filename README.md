@@ -73,7 +73,7 @@ The api call looks like this
  
 ![alt text][image2]
 ####2. Describe how (and identify where in your code) you used color transforms, gradients or other methods to create a thresholded binary image.  Provide an example of a binary image result.
-I used a combination of color and gradient thresholds to generate a binary image (thresholding steps at lines #214 through #224 in `calibrate.py`.  
+I used a combination of color and gradient thresholds to generate a binary image (thresholding steps at lines #214 through #245 in `calibrate.py`.  
 I converted the image to BGR to  HLS color channel and retained the S channel and pixels within a threshold of (170, 255).
 I additionally performed absolute sobel thresholding in x direction, and finally combined both 
 masks.
@@ -206,7 +206,8 @@ My project implementation and approaches did a pretty good job at detecting
  in more tricky conditions where there are plenty of noise in the image frames. For 
  e.g. on a rainy or snowy day. The harder challenge video exposed some key 
  weaknesses such as extreme intensity variation e.g. sunlight etc. and very sharp curves or bends. 
- This means the project will require a more robust tweaking to averaging or using lanes detected from previous. 
+ This means the project will require a more robust tweaking to averaging 
+ or using lanes detected from previous frames. 
  
  A way to improve on the lane detection will be to combine thresholded binary images 
  in multiple color channels, applying more robust outlier rejection techniques etc. 

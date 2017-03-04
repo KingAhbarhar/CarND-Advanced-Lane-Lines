@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3cb9fdb7-6a10-40e8-961f-9ae2f17b76a4" name="Default" comment="" />
+    <list default="true" id="3cb9fdb7-6a10-40e8-961f-9ae2f17b76a4" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/calibrate.py" afterPath="$PROJECT_DIR$/calibrate.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/writeup_template.md" afterPath="$PROJECT_DIR$/writeup_template.md" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,11 +18,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="calibrate.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="calibrate.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/calibrate.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1620">
-              <caret line="690" column="25" lean-forward="true" selection-start-line="690" selection-start-column="25" selection-end-line="690" selection-end-column="25" />
+            <state relative-caret-position="7260">
+              <caret line="693" column="0" lean-forward="true" selection-start-line="693" selection-start-column="0" selection-end-line="693" selection-end-column="0" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -27,12 +30,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="writeup_template.md" pinned="false" current-in-tab="true">
+      <file leaf-file-name="writeup_template.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/writeup_template.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="SPLIT">
-              <first_editor relative-caret-position="326">
-                <caret line="198" column="13" lean-forward="true" selection-start-line="198" selection-start-column="13" selection-end-line="198" selection-end-column="13" />
+              <first_editor relative-caret-position="135">
+                <caret line="75" column="124" lean-forward="false" selection-start-line="75" selection-start-column="123" selection-end-line="75" selection-end-column="124" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -55,9 +58,9 @@
       <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SECOND">
-              <first_editor relative-caret-position="0">
-                <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="133">
+                <caret line="197" column="0" lean-forward="true" selection-start-line="197" selection-start-column="0" selection-end-line="197" selection-end-column="0" />
                 <folding />
               </first_editor>
               <second_editor />
@@ -76,7 +79,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>thresh</find>
       <find>image</find>
       <find>imread</find>
       <find>visual</find>
@@ -103,9 +105,10 @@
       <find>polyfit</find>
       <find>exit</find>
       <find>src&quot;</find>
-      <find>direction</find>
       <find>perform</find>
+      <find>direction</find>
       <find>perform_w</find>
+      <find>#</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -118,8 +121,9 @@
         <option value="$PROJECT_DIR$/lane.py" />
         <option value="$PROJECT_DIR$/Line.py" />
         <option value="$PROJECT_DIR$/lane_detection.py" />
-        <option value="$PROJECT_DIR$/calibrate.py" />
+        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/writeup_template.md" />
+        <option value="$PROJECT_DIR$/calibrate.py" />
       </list>
     </option>
   </component>
@@ -380,7 +384,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="98" y="23" width="1342" height="817" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15897048" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -390,7 +394,7 @@
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32921812" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20689656" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24944568" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32827586" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32827586" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39917696" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -583,17 +587,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SECOND">
-          <first_editor relative-caret-position="0">
-            <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-            <folding />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lane_detection.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="373">
@@ -604,24 +597,35 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/calibrate.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1620">
-          <caret line="690" column="25" lean-forward="true" selection-start-line="690" selection-start-column="25" selection-end-line="690" selection-end-column="25" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="133">
+            <caret line="197" column="0" lean-forward="true" selection-start-line="197" selection-start-column="0" selection-end-line="197" selection-end-column="0" />
+            <folding />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/writeup_template.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
-          <first_editor relative-caret-position="326">
-            <caret line="198" column="13" lean-forward="true" selection-start-line="198" selection-start-column="13" selection-end-line="198" selection-end-column="13" />
+          <first_editor relative-caret-position="135">
+            <caret line="75" column="124" lean-forward="false" selection-start-line="75" selection-start-column="123" selection-end-line="75" selection-end-column="124" />
             <folding />
           </first_editor>
           <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/calibrate.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7260">
+          <caret line="693" column="0" lean-forward="true" selection-start-line="693" selection-start-column="0" selection-end-line="693" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
